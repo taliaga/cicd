@@ -21,6 +21,7 @@ jobs:
     deploy:
       provider: releases
       name: "${TRAVIS_BRANCH}"
+      tag_name: "${TRAVIS_BRANCH}"
       api_key:
         secure: qqiinn3WurobRWOpu63q+u29jAzAgRaWWDXJ95Q7TeRJF0dIukdFjSTSJyDSdZNLZVsGk5HcriipNxx8rKnEv/WoFRFuPxdLrGptHPhtdlFKiFiafrkPuvxUly8XocLXY3FIPJM524Qm3r2Kj5w/Nl4PNTRFWpDqja+fMJt2dfbZoJeQO8r3156QciRDrVBmhobkYLEKvQnki3ZAhQnDWITATOkWt55l4iLW3FgHofcueJzcAtg4iVe5ZEWVBUCP63wrtzV3iJO4UIh9wj1D9hD4g50grDBLflJl8V1f5eMLRisAzy/SHhoLvTCYjllJfXfF4QHSiENKExzGmJjc3cBS50qWRWlnt2Ui03UgmOtw/o/CtcvvEavvgWHrV+nuBteyYP15PAyMF1BzXH/VH0ue+k3iNJHvlyfTE7bt3UOH96HOOjhJyTsm6x6TlZ/CdDlr3Poe/sZZ0qIN/88HFvERDIcIS4BUjuvas3fObYUlEa59oBX2cjmXyGgeEQDVNmHKQjYEXbIMPqE2BgEMGpGRkVqP+Wh7/KGxfVycBP7nSH7kXPQUAy7DMo7hOl/6P/boKPZ1YRZmy5i1KGu7SFSATvYcOgjpQh987zFUJTXHHmefy1uYiIyrUjZ8tt60fsYA2DHLW2Z7O6oX65/lPjForosLEARLWf+Cc6MVCl8=
       file:
