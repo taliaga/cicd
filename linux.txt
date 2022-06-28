@@ -1,4 +1,0 @@
-linux
-or better, GNU/Linux
-Will it cluster?
-let's see

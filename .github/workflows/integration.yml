@@ -1,0 +1,52 @@
+# https://docs.github.com/en/actions/using-workflows/about-workflows
+name: Integration
+
+# "on" conditions apply to the whole workflow.
+# I haven't found how to apply "on" condition just to one job or step other than using 'if's, but in addition to if ugliness, that requires a deeper coupling with the solution internals (if magic_variable = magic_value: do_stuff). See https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions.
+# When you need different overall "on" conditions you can use different workflow files altogether. To avoid repetitions, see https://docs.github.com/en/actions/using-workflows/reusing-workflows.
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+  pull_request:
+    branches:
+      - dev
+    types: [opened, reopened, edited]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+        shell: bash
+        run: |
+          git clone --depth 1 --recursive --shallow-submodules https://github.com/taliaga/cicd && cd cicd
+          echo "linting checked"
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docs
+        shell: bash
+        run: |
+          git clone --depth 1 --recursive --shallow-submodules https://github.com/taliaga/cicd && cd cicd
+          echo "docs checked"
+
+  integration:
+    runs-on: ubuntu-latest
+    needs: [lint, docs]
+    steps:
+      - name: clone
+        shell: bash
+        run: |
+          git clone --depth 1 --recursive --shallow-submodules https://github.com/taliaga/cicd && cd cicd
+      - name: build
+        shell: bash
+        run: |
+          ./cicd/build.sh
+      - name: test
+        shell: bash
+        run: |
+          ./cicd/test.sh
